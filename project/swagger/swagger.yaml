@@ -1,0 +1,307 @@
+---
+swagger: "2.0"
+info:
+  description: "This is a sample API server.  See source code in [Python Microservices](https://github.com/python-microservices/microservices-scaffold)"
+  version: "1.0.0"
+  title: "API of Films and actors"
+  termsOfService: "https://github.com/python-microservices/microservices-scaffold/"
+  contact:
+    email: "a.vara.1986@gmail.com"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+tags:
+- name: "FilmCast"
+  description: "Everything about your film cast"
+  externalDocs:
+    description: "Find out more"
+    url: "https://github.com/python-microservices/microservices-scaffold"
+- name: "Notification"
+  description: "Everything about your film cast"
+  externalDocs:
+    description: "Find out more"
+    url: "https://github.com/python-microservices/microservices-scaffold"
+- name: "Films"
+  description: "Everything about your films"
+  externalDocs:
+    description: "Find out more"
+    url: "https://github.com/python-microservices/microservices-scaffold"
+- name: "Actors"
+  description: "Everything about your actors"
+  externalDocs:
+    description: "Find out more"
+    url: "https://github.com/python-microservices/microservices-scaffold"
+schemes:
+- "http"
+paths:
+  /notification:
+    post:
+      tags:
+      - "Notification"
+      summary: "To display notifications "
+      description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "payload"
+        description: "What to show!!!"
+        required: true
+        schema:
+          $ref: "#/definitions/Notification"
+      responses:
+        "200":
+          description: "Notified!! Nachoo!!!"
+          schema:
+            $ref: '#/definitions/Notification'
+        "405":
+          description: "Invalid input"
+
+  /filmcasts:
+    get:
+      tags:
+      - "FilmCasts"
+      summary: "Example endpoint return a list of actors"
+      description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "A list of filmcasts"
+          schema:
+            $ref: '#/definitions/FilmCasts'
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "Actor not found"
+        "405":
+          description: "Validation exception"
+    post:
+      tags:
+      - "FilmCasts"
+      summary: "Example endpoint return create a film"
+      description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "payload"
+        description: "Data of the film"
+        required: true
+        schema:
+          $ref: "#/definitions/FilmCast"
+      responses:
+        "200":
+          description: "The filmcast created"
+          schema:
+            $ref: '#/definitions/FilmCast'
+        "405":
+          description: "Invalid input"      
+  /actors:
+    post:
+      tags:
+      - "Actors"
+      summary: "Example endpoint return create a actor"
+      description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "actor"
+        description: "Data of the actor"
+        required: true
+        schema:
+          $ref: "#/definitions/Actor"
+      responses:
+        "200":
+          description: "The actor created"
+          schema:
+            $ref: '#/definitions/Actor'
+        "405":
+          description: "Invalid input"
+    get:
+      tags:
+      - "Actors"
+      summary: "Example endpoint return a list of actors"
+      description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "A list of actors"
+          schema:
+            $ref: '#/definitions/Actors'
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "Actor not found"
+        "405":
+          description: "Validation exception"
+  /actors/{id}:
+    put:
+      tags:
+      - "Actors"
+      summary: "Example endpoint return create an actor"
+      description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "ID of actor to return"
+        required: true
+        type: "integer"
+      - in: "body"
+        name: "actor"
+        description: "Data of the actor"
+        required: true
+        schema:
+          $ref: "#/definitions/Actor"
+      responses:
+        "200":
+          description: "The actor created"
+          schema:
+            $ref: '#/definitions/Actor'
+        "405":
+          description: "Invalid input"
+
+  /films:
+    post:
+      tags:
+      - "Films"
+      summary: "Example endpoint return create a film"
+      description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "payload"
+        description: "Data of the film"
+        required: true
+        schema:
+          $ref: "#/definitions/Film"
+      responses:
+        "200":
+          description: "The film created"
+          schema:
+            $ref: '#/definitions/Film'
+        "405":
+          description: "Invalid input"
+    get:
+      tags:
+      - "Films"
+      summary: "Example endpoint return a list of films"
+      description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "A list of actors"
+          schema:
+            $ref: '#/definitions/Films'
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "Actor not found"
+        "405":
+          description: "Validation exception"
+  /films/{id}:
+    put:
+      tags:
+      - "Films"
+      summary: "Example endpoint return create a film"
+      description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "ID of film to return"
+        required: true
+        type: "integer"
+      - in: "body"
+        name: "payload"
+        description: "Data of the film"
+        required: true
+        schema:
+          $ref: "#/definitions/Film"
+      responses:
+        "200":
+          description: "The film created"
+          schema:
+            $ref: '#/definitions/Film'
+        "405":
+          description: "Invalid input"
+definitions:
+      Notification:
+        type: "object"
+        properties:
+          id:
+            type: "integer"
+          mail_id:
+            type: "string"
+          mobile_no:
+            type: "string"
+      FilmCast:
+        type: "object"
+        properties:
+          id:
+            type: "integer"
+          actor_id:
+            type: "integer"
+          film_id:
+            type: "integer"
+      FilmCasts:
+        type: "array"   
+      Actor:
+        type: "object"
+        properties:
+          id:
+            type: "integer"
+          name:
+            type: "string"
+          surname:
+            type: "string"
+      Actors:
+        type: "array"
+        items:
+          $ref: '#/definitions/Actor'
+      Film:
+        type: "object"
+        properties:
+          id:
+            type: "integer"
+          name:
+            type: "string"
+          pubDate:
+            type: "string"
+          cast:
+            type: "array"
+            items:
+              $ref: '#/definitions/Actor'
+      Films:
+        type: "array"
+        items:
+          $ref: '#/definitions/Film'
+      
+externalDocs:
+  description: "Find out more about Swagger"
+  url: "https://github.com/python-microservices/microservices-scaffold"
